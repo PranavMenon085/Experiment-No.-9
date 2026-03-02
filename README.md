@@ -236,13 +236,6 @@ For multi-dimensional arrays, sums all elements across all axes by default.
 
 Example: np.sum([1,10,20,30,40,50,500]) → 651
 
-Summary Table:
-Function       | Description                | Result (for array a)
-np.mean(a)     | Arithmetic average         | 93.0
-np.median(a)   | Middle value when sorted   | 30.0
-np.max(a)      | Largest element            | 500
-np.min(a)      | Smallest element           | 1
-np.sum(a)      | Total of all elements      | 651
 
 6) NumPy Data Types (dtype)
 
@@ -308,17 +301,6 @@ s = a[1:3]      # s = [10, 20] — this is a view
 s[0] = 99       # modifies a as well → a = [1, 99, 20, 30, 40]
 c = a[1:3].copy()   # c is an independent copy
 
-8) Comparison of Python List vs NumPy Array
-
-Feature              | Python List          | NumPy Array
----------------------|----------------------|----------------------
-Data types           | Mixed allowed        | Homogeneous only
-Speed                | Slower (interpreted) | Faster (compiled C)
-Memory usage         | Higher               | Lower
-Element-wise ops     | Requires loops       | Vectorized directly
-Mathematical funcs   | Not built-in         | Fully built-in
-Multi-dimensional    | Not native           | 1D, 2D, nD supported
-Import required      | No                   | Yes (import numpy)
 
 This makes NumPy the preferred choice for any numerical, scientific,
 or data-heavy computation in Python.
