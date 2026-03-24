@@ -8,11 +8,8 @@ Batch: ENTC - B1
 
 Aim: To study NumPy tool in Python and understand array creation, properties, built-in functions, and their applications.
 
-────────────────────────────────────────────────────────────────
 
 THEORY
-
-────────────────────────────────────────────────────────────────
 
 1) Introduction to NumPy
 
@@ -28,8 +25,6 @@ Python libraries including Pandas, SciPy, Matplotlib, and TensorFlow.
 
 Import Statement:
     import numpy as np
-
-────────────────────────────────────────────────────────────────
 
 Key Characteristics:
 
@@ -54,7 +49,6 @@ Key Characteristics:
   - Interoperability: NumPy arrays integrate seamlessly with other scientific libraries,
     databases, and file formats such as CSV, HDF5, and binary files.
 
-────────────────────────────────────────────────────────────────
 
 2) Array Creation
 
@@ -87,8 +81,6 @@ that generate arrays with specific patterns or values.
      operations.
 
 Both 1D and 2D arrays can be displayed on the console using Python's print() function.
-
-────────────────────────────────────────────────────────────────
 
 3) Array Properties
 
@@ -129,7 +121,6 @@ structure and content. These properties are accessed using dot notation on the a
     It equals size × itemsize.
     Usage: a.nbytes
 
-────────────────────────────────────────────────────────────────
 
 4) Built-in Array Creation Functions
 
@@ -177,7 +168,6 @@ computations where specific initial arrays are required.
     Creates an array of given size with random integers in the range [low, high).
     Example: np.random.randint(1, 100, (3, 3)) generates a 3×3 matrix of random integers.
 
-────────────────────────────────────────────────────────────────
 
 5) Array Arithmetic Operations
 
@@ -194,7 +184,6 @@ Examples:
     b % 3     → Returns the remainder when each element is divided by 3.
 
 
-────────────────────────────────────────────────────────────────
 
 6) Array Indexing and Slicing
 
@@ -206,7 +195,6 @@ a range of elements).
   - 2D Indexing:     b[1][2] or b[1, 2] accesses row 1, column 2.
   - 2D Slicing:      b[0:2, 1:3] returns a submatrix of rows 0-1 and columns 1-2.
 
-────────────────────────────────────────────────────────────────
 
 7) Array Manipulation Functions
 
@@ -218,7 +206,6 @@ NumPy provides functions to reshape, flatten, transpose, and combine arrays.
   - np.concatenate():       Joins two or more arrays along an existing axis.
   - np.sort(a):             Returns a sorted copy of the array in ascending order.
 
-────────────────────────────────────────────────────────────────
 
 8) Statistical Functions
 
@@ -233,7 +220,6 @@ data stored in arrays. These are heavily used in data analysis and scientific co
   - np.std(a):     Returns the standard deviation, measuring spread of values.
   - np.var(a):     Returns the variance of the array elements.
 
-────────────────────────────────────────────────────────────────
 
 9) Linear Algebra with NumPy
 
@@ -246,7 +232,6 @@ NumPy includes the np.linalg module for performing linear algebra operations.
   - np.linalg.norm(a):       Returns the Euclidean norm (magnitude) of a vector.
   - np.linalg.solve(A, b):   Solves the linear equation Ax = b for x.
 
-────────────────────────────────────────────────────────────────
 
 10) Practical Applications of NumPy
 
@@ -267,19 +252,8 @@ NumPy includes the np.linalg module for performing linear algebra operations.
     particle systems, and numerical integration rely heavily on NumPy's speed and
     mathematical capabilities.
 
-────────────────────────────────────────────────────────────────
+
 
 CONCLUSION
 
-The study of the NumPy tool in Python was successfully completed. Various concepts
-including array creation (1D, 2D, 3D), array properties (ndim, size, shape, dtype,
-itemsize, nbytes), built-in creation functions (zeros, ones, eye, arange, linspace,
-full, random), arithmetic operations, broadcasting, array indexing and slicing,
-array manipulation, statistical functions, and linear algebra operations were
-thoroughly understood and implemented.
-
-NumPy proves to be an essential and highly efficient library for numerical computing.
-Its vectorized operations, memory-efficient storage, and rich mathematical functions
-make it far superior to standard Python lists for scientific and engineering tasks.
-The knowledge gained through this experiment forms the foundation for further work
-in data science, machine learning, and scientific computing using Python.
+The study of the NumPy tool in Python was successfully completed. 
