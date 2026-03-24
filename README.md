@@ -8,170 +8,278 @@ Batch: ENTC - B1
 
 Aim: To study NumPy tool in Python and understand array creation, properties, built-in functions, and their applications.
 
-THEORY:
+────────────────────────────────────────────────────────────────
+
+THEORY
+
+────────────────────────────────────────────────────────────────
 
 1) Introduction to NumPy
 
-NumPy (Numerical Python) is a library for numerical computing providing support for multi-dimensional arrays and mathematical operations. It is faster and more memory-efficient than Python lists.
+NumPy (Numerical Python) is a powerful open-source library for numerical computing in Python.
+It provides support for multi-dimensional arrays and a wide range of mathematical operations.
+Compared to regular Python lists, NumPy arrays are significantly faster in execution and more
+efficient in memory usage, making it the preferred choice for scientific and data-related
+computing tasks.
+
+NumPy is widely used in fields such as data science, machine learning, signal processing,
+image processing, and scientific simulations. It serves as the foundation for many other
+Python libraries including Pandas, SciPy, Matplotlib, and TensorFlow.
+
+Import Statement:
+    import numpy as np
+
+────────────────────────────────────────────────────────────────
+
 Key Characteristics:
-• Homogeneous – All elements must be of the same data type
-• Multi-dimensional – Supports 1D, 2D, and nD arrays
-• Vectorized – Operations apply to entire arrays without loops
-• Rich Functions – Built-in statistical, algebraic, and array functions
-Import: import numpy as np
+
+  - Homogeneous: All elements in a NumPy array must belong to the same data type, such
+    as all integers or all floats. This uniformity enables efficient storage in memory.
+
+  - Multi-dimensional: NumPy supports arrays of any dimension, including 1D (vectors),
+    2D (matrices), 3D tensors, and higher-dimensional arrays, making it versatile for
+    complex numerical applications.
+
+  - Vectorized: Mathematical operations are applied directly to entire arrays at once,
+    eliminating the need for explicit Python loops. This vectorization makes computations
+    much faster and the code more readable and concise.
+
+  - Rich Built-in Functions: NumPy includes a large collection of built-in functions for
+    statistical analysis, linear algebra, Fourier transforms, random number generation,
+    array manipulation, and more.
+
+  - Memory Efficiency: Unlike Python lists, NumPy arrays store data in contiguous blocks
+    of memory with a fixed data type, which reduces overhead and speeds up access.
+
+  - Interoperability: NumPy arrays integrate seamlessly with other scientific libraries,
+    databases, and file formats such as CSV, HDF5, and binary files.
+
+────────────────────────────────────────────────────────────────
 
 2) Array Creation
 
-Arrays are created using np.array() by passing a list or nested list.
-- 1D Array: np.array([1,10,20,30]) → single-dimensional
-- 2D Array: np.array([[1,2,3],[4,5,6]]) → matrix-like structure
-Example: a = np.array([1,10,20,30,40,50,500]) | b = np.array([[1,2,3],[4,5,6],[7,8,9]])
+NumPy arrays are created using the np.array() function by passing a Python list or a
+nested list as input. Arrays can also be created using a variety of built-in functions
+that generate arrays with specific patterns or values.
+
+  a) 1D Array:
+     A one-dimensional array is created by passing a simple flat list.
+     Example:
+         a = np.array([1, 10, 20, 30, 40, 50, 500])
+     This creates a single-dimensional array containing seven integer elements.
+     It behaves like a mathematical vector.
+
+  b) 2D Array:
+     A two-dimensional array is created by passing a nested list, where each inner
+     list represents one row.
+     Example:
+         b = np.array([[1, 2, 3],
+                       [4, 5, 6],
+                       [7, 8, 9]])
+     This creates a 3×3 matrix-like structure with three rows and three columns.
+
+  c) 3D Array:
+     A three-dimensional array can be created by nesting lists to another level.
+     Example:
+         c = np.array([[[1, 2], [3, 4]],
+                       [[5, 6], [7, 8]]])
+     This creates a 2×2×2 array, commonly used in image processing and tensor
+     operations.
+
+Both 1D and 2D arrays can be displayed on the console using Python's print() function.
+
+────────────────────────────────────────────────────────────────
 
 3) Array Properties
 
-- ndim – Number of dimensions (1 for 1D, 2 for 2D array)
-- size – Total number of elements in the array
-- shape – Tuple representing (rows, columns); e.g. (3,3) for a 3×3 array
-- dtype – Data type of elements (int64, float64, etc.); float if any element is float
+Every NumPy array has a set of built-in attributes that provide information about its
+structure and content. These properties are accessed using dot notation on the array object.
+
+  - ndim:
+    Returns the number of dimensions of the array.
+    A 1D array returns 1, a 2D array returns 2, and so on.
+    Usage: a.ndim, b.ndim
+    Example output: 1 (for array a), 2 (for array b)
+
+  - size:
+    Returns the total number of elements present in the array, regardless of shape.
+    For example, a 3×3 array has a size of 9.
+    Usage: a.size, b.size
+
+  - shape:
+    Returns a tuple that describes the structure of the array in terms of rows and
+    columns (and further dimensions if applicable).
+    For example, a 3×3 array returns (3, 3). A 1D array of 7 elements returns (7,).
+    Usage: a.shape, b.shape
+
+  - dtype:
+    Returns the data type of the elements stored in the array, such as int64 or float64.
+    If all elements are integers, the dtype is int64. However, if even one element is a
+    decimal value (e.g., 30.5), NumPy automatically upgrades the dtype of the entire
+    array to float64. This is called type promotion.
+    Usage: a.dtype, b.dtype
+
+  - itemsize:
+    Returns the size in bytes of each element in the array.
+    For int64, itemsize = 8 bytes. For float32, itemsize = 4 bytes.
+    Usage: a.itemsize
+
+  - nbytes:
+    Returns the total number of bytes consumed by all elements in the array.
+    It equals size × itemsize.
+    Usage: a.nbytes
+
+────────────────────────────────────────────────────────────────
 
 4) Built-in Array Creation Functions
 
-- np.zeros((r,c)) – Array of all zeros with shape (r,c)
-- np.ones((r,c)) – Array of all ones with shape (r,c)
-- np.eye(n) – n×n identity matrix (1s on diagonal, 0s elsewhere)
-- np.arange(start,stop,step) – Array of evenly spaced values (like range())
-- np.linspace(start,stop,n) – Array of n evenly spaced values between start and stop
+NumPy provides several ready-made functions to create arrays with standard values or
+patterns. These are especially useful in mathematical, scientific, and engineering
+computations where specific initial arrays are required.
+
+  - np.zeros((r, c)):
+    Creates an array of shape (r × c) where every element is 0.0.
+    Example: np.zeros((2, 3)) creates a 2-row, 3-column array filled with zeros.
+    Use case: Initializing weight matrices in machine learning.
+
+  - np.ones((r, c)):
+    Creates an array of shape (r × c) where every element is 1.0.
+    Example: np.ones((2, 3)) creates a 2-row, 3-column array filled with ones.
+    Use case: Creating mask arrays or bias initialization.
+
+  - np.eye(n):
+    Creates an n×n identity matrix, where diagonal elements are 1 and all others are 0.
+    Example: np.eye(3) creates a 3×3 identity matrix.
+    Use case: Linear algebra operations and solving systems of equations.
+
+  - np.full((r, c), value):
+    Creates an array of shape (r × c) filled entirely with a specified constant value.
+    Example: np.full((3, 3), 7) creates a 3×3 matrix filled with 7.
+
+  - np.arange(start, stop, step):
+    Generates an array of evenly spaced values starting from 'start' up to (but not
+    including) 'stop', with a gap of 'step' between values.
+    Example: np.arange(1, 10, 2) produces [1, 3, 5, 7, 9].
+    Use case: Generating index arrays or iteration sequences.
+
+  - np.linspace(start, stop, n):
+    Generates an array of exactly n evenly spaced values between 'start' and 'stop',
+    including both endpoints.
+    Example: np.linspace(0, 1, 5) produces [0.0, 0.25, 0.5, 0.75, 1.0].
+    Use case: Generating smooth intervals for plotting graphs or simulations.
+
+  - np.random.rand(r, c):
+    Creates an array of shape (r × c) filled with random float values between 0 and 1,
+    sampled from a uniform distribution.
+    Example: np.random.rand(2, 3) generates a 2×3 matrix of random values.
+
+  - np.random.randint(low, high, size):
+    Creates an array of given size with random integers in the range [low, high).
+    Example: np.random.randint(1, 100, (3, 3)) generates a 3×3 matrix of random integers.
+
+────────────────────────────────────────────────────────────────
 
 5) Array Arithmetic Operations
 
-NumPy supports element-wise arithmetic directly on arrays without loops.
-- Array + scalar: adds scalar to every element
-- Array * scalar: multiplies every element by scalar
-Example: a+5 → each element of a incremented by 5 | b*2 → each element doubled
+NumPy supports element-wise arithmetic operations directly on arrays through operator
+overloading. Mathematical operators like +, -, *, and / work on every element of the
+array simultaneously, without the need for any explicit loop.
 
-6) Statistical Functions
+Examples:
+    b * 2     → Multiplies every element of array b by 2.
+    a + 5     → Adds 5 to every element of array a.
+    a - 3     → Subtracts 3 from every element.
+    b / 2     → Divides every element by 2.
+    b ** 2    → Raises every element to the power of 2.
+    b % 3     → Returns the remainder when each element is divided by 3.
 
-NumPy provides built-in functions for statistical analysis on arrays:
-- np.mean(a) – Arithmetic mean of all elements
-- np.median(a) – Median value of the array
-- np.max(a) – Maximum element
-- np.min(a) – Minimum element
-- np.sum(a) – Sum of all elements
 
-ALGORITHMS
+────────────────────────────────────────────────────────────────
 
-Algorithm 1: Declare and Display 1D and 2D Arrays
-Step 1: Start
-Step 2: Import NumPy
-   - Command: import numpy as np
-   - Function: import - imports the NumPy library
-   - Source: NumPy library (pip install numpy / pre-installed in Colab)
-Step 3: Create 1D array
-   - Command: a = np.array([1,10,20,30,40,50,500])
-   - Function: np.array() - Creates a NumPy array from a list
-   - Source: NumPy library function (import numpy as np)
-Step 4: Create 2D array
-   - Command: b = np.array([[1,2,3],[4,5,6],[7,8,9]])
-   - Function: np.array() - Creates a 2D NumPy array from nested list
-   - Source: NumPy library function (import numpy as np)
-Step 5: Display both arrays
-   - Command: print(a) ; print(b)
-   - Function: print() - Built-in function for console output
-   - Source: Built-in Python function (no import required)
-Step 6: Stop
+6) Array Indexing and Slicing
 
-Algorithm 2: Determine Dimensions of Arrays
-Step 1: Start
-Step 2: Print dimensions of 1D and 2D arrays
-   - Command: print(a.ndim) ; print(b.ndim)
-   - Function: .ndim - Array attribute returning number of dimensions
-   - Source: NumPy array attribute (import numpy as np)
-Step 3: Stop
+NumPy arrays support both indexing (accessing a single element) and slicing (accessing
+a range of elements).
 
-Algorithm 3: Determine Size of Arrays
-Step 1: Start
-Step 2: Print total number of elements
-   - Command: print(a.size) ; print(b.size)
-   - Function: .size - Array attribute returning total number of elements
-   - Source: NumPy array attribute (import numpy as np)
-Step 3: Stop
+  - 1D Indexing:     a[0] returns the first element; a[-1] returns the last.
+  - 1D Slicing:      a[1:4] returns elements from index 1 to 3 (inclusive).
+  - 2D Indexing:     b[1][2] or b[1, 2] accesses row 1, column 2.
+  - 2D Slicing:      b[0:2, 1:3] returns a submatrix of rows 0-1 and columns 1-2.
 
-Algorithm 4: Determine Shape of Arrays
-Step 1: Start
-Step 2: Print shape tuple of both arrays
-   - Command: print(a.shape) ; print(b.shape)
-   - Function: .shape - Array attribute returning (rows,cols) tuple
-   - Source: NumPy array attribute (import numpy as np)
-Step 3: Stop
+────────────────────────────────────────────────────────────────
 
-Algorithm 5: Determine Data Type of Arrays
-Step 1: Start
-Step 2: Print dtype of integer arrays
-   - Command: print(a.dtype) ; print(b.dtype)
-   - Function: .dtype - Array attribute returning element data type
-   - Source: NumPy array attribute (import numpy as np)
-Step 3: Recreate array with a float element
-   - Command: a = np.array([1,10,20,30.5,40,50,500])
-   - Function: np.array() - float element causes entire array to be float64
-   - Source: NumPy library function (import numpy as np)
-Step 4: Print updated dtype
-   - Command: print(a.dtype) ; print(b.dtype)
-   - Function: .dtype - Returns float64 for a, int64 for b
-   - Source: NumPy array attribute (import numpy as np)
-Step 5: Stop
+7) Array Manipulation Functions
 
-Algorithm 6: Built-in Array Creation Functions (zeros, ones, eye)
-Step 1: Start
-Step 2: Create and display 2x3 zeros array
-   - Command: print(np.zeros((2,3)))
-   - Function: np.zeros() - Creates array filled with 0.0
-   - Source: NumPy library function (import numpy as np)
-Step 3: Create and display 2x3 ones array
-   - Command: print(np.ones((2,3)))
-   - Function: np.ones() - Creates array filled with 1.0
-   - Source: NumPy library function (import numpy as np)
-Step 4: Create and display 3x3 identity matrix
-   - Command: print(np.eye(3))
-   - Function: np.eye() - Creates identity matrix with 1s on diagonal
-   - Source: NumPy library function (import numpy as np)
-Step 5: Stop
+NumPy provides functions to reshape, flatten, transpose, and combine arrays.
 
-Algorithm 7: Built-in Functions (arange, linspace, arithmetic)
-Step 1: Start
-Step 2: Display arange sequences
-   - Command: print(np.arange(1,10,2)) ; print(np.arange(1,11,2))
-   - Function: np.arange(start,stop,step) - Generates evenly spaced values
-   - Source: NumPy library function (import numpy as np)
-Step 3: Display linspace sequence
-   - Command: print(np.linspace(0,1,4))
-   - Function: np.linspace(start,stop,n) - n evenly spaced values
-   - Source: NumPy library function (import numpy as np)
-Step 4: Scalar multiplication and addition on arrays
-   - Command: print(b*2) ; print(a+5)
-   - Function: * and + - Element-wise arithmetic operators on NumPy arrays
-   - Source: NumPy operator overloading (import numpy as np)
-Step 5: Stop
+  - np.reshape(a, (r, c)):  Changes the shape of an array without altering its data.
+  - np.flatten():           Converts a multi-dimensional array into a 1D array.
+  - np.transpose(b):        Swaps rows and columns of a 2D array (matrix transpose).
+  - np.concatenate():       Joins two or more arrays along an existing axis.
+  - np.sort(a):             Returns a sorted copy of the array in ascending order.
 
-Algorithm 8: Statistical Functions on Arrays
-Step 1: Start
-Step 2: Calculate and display mean
-   - Command: print(np.mean(a))
-   - Function: np.mean() - Returns arithmetic mean of array elements
-   - Source: NumPy library function (import numpy as np)
-Step 3: Calculate and display median
-   - Command: print(np.median(a))
-   - Function: np.median() - Returns median value of array
-   - Source: NumPy library function (import numpy as np)
-Step 4: Calculate and display max and min
-   - Command: print(np.max(a)) ; print(np.min(a))
-   - Function: np.max() / np.min() - Returns maximum/minimum element
-   - Source: NumPy library functions (import numpy as np)
-Step 5: Calculate and display sum
-   - Command: print(np.sum(a))
-   - Function: np.sum() - Returns sum of all array elements
-   - Source: NumPy library function (import numpy as np)
-Step 6: Stop
+────────────────────────────────────────────────────────────────
+
+8) Statistical Functions
+
+NumPy provides a set of built-in statistical functions that allow quick analysis of
+data stored in arrays. These are heavily used in data analysis and scientific computing.
+
+  - np.mean(a):    Calculates and returns the arithmetic mean (average) of all elements.
+  - np.median(a):  Returns the median value (middle value when elements are sorted).
+  - np.max(a):     Returns the largest element present in the array.
+  - np.min(a):     Returns the smallest element present in the array.
+  - np.sum(a):     Returns the total sum of all elements in the array.
+  - np.std(a):     Returns the standard deviation, measuring spread of values.
+  - np.var(a):     Returns the variance of the array elements.
+
+────────────────────────────────────────────────────────────────
+
+9) Linear Algebra with NumPy
+
+NumPy includes the np.linalg module for performing linear algebra operations.
+
+  - np.dot(a, b):            Computes the dot product of two arrays/matrices.
+  - np.linalg.det(b):        Computes the determinant of a square matrix.
+  - np.linalg.inv(b):        Computes the inverse of a square matrix.
+  - np.linalg.eig(b):        Returns the eigenvalues and eigenvectors of a matrix.
+  - np.linalg.norm(a):       Returns the Euclidean norm (magnitude) of a vector.
+  - np.linalg.solve(A, b):   Solves the linear equation Ax = b for x.
+
+────────────────────────────────────────────────────────────────
+
+10) Practical Applications of NumPy
+
+  - Data Analysis: NumPy arrays serve as the core data structure for analyzing large
+    datasets, computing statistics, and preparing data for visualization.
+
+  - Image Processing: Digital images are stored as 2D or 3D NumPy arrays (height ×
+    width × color channels). Filters, transformations, and augmentations are applied
+    using array operations.
+
+  - Machine Learning: Feature matrices, weight vectors, activation functions, and
+    gradient computations in neural networks are all handled with NumPy operations.
+
+  - Signal Processing: Sensor data, audio waveforms, and time-series signals are
+    represented as 1D NumPy arrays and processed using FFT and filtering functions.
+
+  - Scientific Simulations: Physical simulations involving differential equations,
+    particle systems, and numerical integration rely heavily on NumPy's speed and
+    mathematical capabilities.
+
+────────────────────────────────────────────────────────────────
 
 CONCLUSION
 
-The study of NumPy tool in Python was successfully completed.
+The study of the NumPy tool in Python was successfully completed. Various concepts
+including array creation (1D, 2D, 3D), array properties (ndim, size, shape, dtype,
+itemsize, nbytes), built-in creation functions (zeros, ones, eye, arange, linspace,
+full, random), arithmetic operations, broadcasting, array indexing and slicing,
+array manipulation, statistical functions, and linear algebra operations were
+thoroughly understood and implemented.
+
+NumPy proves to be an essential and highly efficient library for numerical computing.
+Its vectorized operations, memory-efficient storage, and rich mathematical functions
+make it far superior to standard Python lists for scientific and engineering tasks.
+The knowledge gained through this experiment forms the foundation for further work
+in data science, machine learning, and scientific computing using Python.
